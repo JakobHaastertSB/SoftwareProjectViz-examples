@@ -4,13 +4,13 @@
 // Scheidt & Bachmann System Technik GmbH, 24145 Kiel
 // and
 // + Christian-Albrechts-University of Kiel
-//   + Department of Computer Science
-//     + Real-Time and Embedded Systems Group
+// + Department of Computer Science
+// + Real-Time and Embedded Systems Group
 //
 // This program and the accompanying materials are made available under the
 // terms of the Eclipse Public License 2.0 which is available at
 // http://www.eclipse.org/legal/epl-2.0.
-// 
+//
 // SPDX-License-Identifier: EPL-2.0
 //
 // ******************************************************************************
@@ -23,7 +23,6 @@ package de.cau.cs.kieler.spviz.osgi.generate;
  * @author dams
  *
  */
-@SuppressWarnings("nls")
 public class StaticVariables {
     static final String BUNDLE_SYMBOLIC_NAME = "Bundle-SymbolicName";
     static final String BUNDLE_CATEGORY = "Bundle-Category";
@@ -47,13 +46,12 @@ public class StaticVariables {
     static final String UNIQUE_ID = "uid";
     static final String XML_FILE = ".xml";
 
-
-	static final String BUNDLE_PREFIX = "Bundle_";
-	static final String PRODUCT_PREFIX = "Product_";
-	static final String FEATURE_PREFIX = "Feature_";
-	static final String PACKAGE_PREFIX = "Package_";
-	static final String SERVICE_COMPONENT_PREFIX = "ServiceComponent_";
-	static final String SERVICE_INTERFACE_PREFIX = "ServiceInterface_";
-	static final String BUNDLE_CATEGORY_PREFIX = "BundleCategory_";
+    static final String BUNDLE_PREFIX = "Bundle_";
+    static final String PRODUCT_PREFIX = "Product_";
+    static final String FEATURE_PREFIX = "Feature_";
+    static final String PACKAGE_PREFIX = "Package_";
+    static final String SERVICE_COMPONENT_PREFIX = "ServiceComponent_";
+    static final String SERVICE_INTERFACE_PREFIX = "ServiceInterface_";
+    static final String BUNDLE_CATEGORY_PREFIX = "BundleCategory_";
 
 }

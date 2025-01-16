@@ -1,21 +1,34 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
+
 	<parent>
-	   <groupId>de.cau.cs.kieler.spviz</groupId>
-	   <artifactId>parent</artifactId>
-	   <version>0.1.0-SNAPSHOT</version>
-       <relativePath>../spviz.build/pom.xml</relativePath> <!-- Only works like this if the parent will be generated at this relative path
-       (so, if the generator is next to the other generated bundles). Adapt this path for other use cases. -->
+		<groupId>de.cau.cs.kieler.spviz</groupId>
+		<artifactId>parent</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+		<relativePath>../spviz.build/pom.xml</relativePath> <!-- Only works like
+		this if the parent will be generated at this relative path
+       (so, if the generator is next to the other generated bundles). Adapt this path
+		for other use cases. -->
 	</parent>
-  
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.cau.cs.kieler.spviz.osgi.generate</groupId>
 	<artifactId>de.cau.cs.kieler.spviz.osgi.generate</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>maven-plugin</packaging>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<version>3.9.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugin-tools</groupId>
+			<artifactId>maven-plugin-annotations</artifactId>
+			<version>3.9.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
@@ -31,11 +44,11 @@
 			<artifactId>picocli</artifactId>
 			<version>4.6.3</version>
 		</dependency>
-        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
-		    <groupId>commons-io</groupId>
-		    <artifactId>commons-io</artifactId>
-		    <version>2.11.0</version>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.11.0</version>
 		</dependency>
 	</dependencies>
 
@@ -50,6 +63,14 @@
 			</resource>
 		</resources>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-plugin-plugin</artifactId>
+				<version>3.6.4</version>
+				<configuration>
+					<goalPrefix>generate-spviz-osgi</goalPrefix>
+				</configuration>
+			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.10.0</version>
@@ -66,27 +87,29 @@
 					<execution>
 						<phase>package</phase>
 						<goals>
-						<goal>shade</goal>
+							<goal>shade</goal>
 						</goals>
 						<configuration>
 							<transformers>
-								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>de.cau.cs.kieler.spviz.osgi.generate.ConfigAndExecuteCli</mainClass>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>
+										de.cau.cs.kieler.spviz.osgi.generate.ConfigAndExecuteCli</mainClass>
 								</transformer>
 							</transformers>
 							<filters>
 								<filter>
-								<artifact>*:*</artifact>
-								<excludes>
-									<exclude>META-INF/*.SF</exclude>
-									<exclude>META-INF/*.DSA</exclude>
-									<exclude>META-INF/*.RSA</exclude>
-									<exclude>META-INF/MANIFEST.MF</exclude>
-									<exclude>schema/*.exsd</exclude>
-									<exclude>about.*</exclude>
-									<exclude>modeling32.png</exclude>
-									<exclude>plugin.*</exclude>
-								</excludes>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+										<exclude>META-INF/MANIFEST.MF</exclude>
+										<exclude>schema/*.exsd</exclude>
+										<exclude>about.*</exclude>
+										<exclude>modeling32.png</exclude>
+										<exclude>plugin.*</exclude>
+									</excludes>
 								</filter>
 							</filters>
 							<createDependencyReducedPom>false</createDependencyReducedPom>

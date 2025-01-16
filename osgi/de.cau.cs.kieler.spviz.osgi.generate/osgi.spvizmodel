@@ -10,10 +10,12 @@ SPVizModel OSGi {
 	}
 	Bundle {
 		Dependency connects Bundle
-		PackageDependency connects Package
+		PackageExportDependency connects Package
+		PackageImportDependency connects Package
+		PackageDependency connects Bundle
+		contains Package
 		contains ServiceInterface
 		contains ServiceComponent
-		contains Package
 	}
 	ServiceInterface {
 		ProvidedBy connects ServiceComponent
@@ -21,5 +23,7 @@ SPVizModel OSGi {
 	ServiceComponent {
 		Required connects ServiceInterface
 	}
-	Package
+	Package {
+		ImportedBy connects Bundle
+	}
 }

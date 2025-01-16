@@ -14,19 +14,32 @@ SPViz OSGiViz {
 		connect OSGi.ServiceComponent.Required via OSGi.Bundle in Services
 		connect OSGi.ServiceInterface.ProvidedBy via OSGi.Bundle in Services
 	}
+	
 	BundleDependencies {
 		show OSGi.Bundle
 		connect OSGi.Bundle.Dependency
-//		connect OSGi.Bundle via OSGi.Bundle.PackageDependency
 	}
+	
+	PackageDependencies {
+		show OSGi.Bundle
+		show OSGi.Package
+		connect OSGi.Bundle.PackageExportDependency
+		connect OSGi.Bundle.PackageImportDependency
+		connect OSGi.Bundle.PackageDependency
+	}
+	
+	AllDependencies {
+		show OSGi.Bundle
+		connect OSGi.Bundle.Dependency
+		connect OSGi.Bundle.PackageDependency
+	}
+	
 	Products {
 		show OSGi.Product
-//		connect OSGi.Bundle.Dependency via OSGi.Product>OSGi.Feature>OSGi.Bundle
 	}
 	Features {
 		show OSGi.Feature
 		connect OSGi.Bundle.Dependency via OSGi.Feature in BundleDependencies
-		// connect Feature to Feature via source Feature>Bundle and target Feature>Bundle >Dep
 	}
 	
 	OSGi.Product shows {
